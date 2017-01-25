@@ -20,7 +20,7 @@ namespace DotNetCoreKoans.Koans
                 b = false;
             }
 
-            Assert.Equal(FILL_ME_IN, b);
+            Assert.Equal(true, b);
         }
 
         [Step(2)]

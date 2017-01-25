@@ -8,20 +8,24 @@ namespace DotNetCoreKoans.Koans
         [Step(1)]
         public void NullIsNotAnObject()
         {
-            Assert.True(null is object);
+            // Assert.True(null is object);
+            object s = null;
+            Assert.False(s is object);
+            //any null object returns false
 
             // The `is` operator returns false if the object (first parameter)
             // is null, no matter what the type (second parameter) is.
         }
 
-        [Step(2)]
+         [Step(2)]
         public void YouGetNullPointerErrorsWhenCallingMethodsOnNull()
         {
             //What is the Exception that is thrown when you call a method on a null object?
             //Don't be confused by the code below. It is using Anonymous Delegates which we will
             //cover later on. 
             object nothing = null;
-            Assert.Throws(typeof(FillMeIn), delegate() { nothing.ToString(); });
+            Assert.Throws(typeof(System.NullReferenceException), delegate() { nothing.ToString(); });
+            //Actual: typeof(System.NullReferenceException): Obj reference not set to an instance of an obj
 
             //What's the message of the exception? What substring or pattern could you test
             //against in order to have a good idea of what the string is?
@@ -31,7 +35,7 @@ namespace DotNetCoreKoans.Koans
             }
             catch (System.Exception ex)
             {
-                Assert.Contains(FILL_ME_IN as string, ex.Message);
+                Assert.Contains("Object reference not set to an instance of an object." as string, ex.Message);
             }
         }
 
@@ -39,21 +43,22 @@ namespace DotNetCoreKoans.Koans
         public void CheckingThatAnObjectIsNull()
         {
             object obj = null;
-            Assert.True(obj == FILL_ME_IN);
+            Assert.True(obj == null);
         }
 
         [Step(4)]
         public void ABetterWayToCheckThatAnObjectIsNull()
         {
             object obj = null;
-            Assert.Null(FILL_ME_IN);
+            Assert.Null(obj);
         }
 
         [Step(5)]
         public void AWayNotToCheckThatAnObjectIsNull()
         {
             object obj = null;
-            Assert.True(obj.Equals(null));
+            Assert.True(obj == (null));
+            //made it look just like line 46?
         }
     }
 }
